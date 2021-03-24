@@ -4,11 +4,11 @@ import numpy
 # Public methods
 #
 
-def levenshtein (x, y, should_print = False) :
+def levenshtein (x, y) :
 	xlen = 1 + len(x)
 	ylen = 1 + len(y)
 
-	distance = numpy.zeros((xlen, ylen), dtype = int)
+	distance = numpy.zeros((xlen, ylen), dtype = numpy.int16)
 
 	for i in range(xlen) :
 		distance[i][0] = i
@@ -34,16 +34,13 @@ def levenshtein (x, y, should_print = False) :
 
 				distance[xi][yi] = min(a, b, c)
 
-	if should_print :
-		__print(distance)
-
 	return distance[xlen - 1][ylen - 1]
 
-def lcs (x, y, should_print = False) :
+def lcs (x, y) :
 	xlen = 1 + len(x)
 	ylen = 1 + len(y)
 
-	distance = numpy.zeros((xlen, ylen), dtype = int)
+	distance = numpy.zeros((xlen, ylen), dtype = numpy.int16)
 
 	for xi in range(1, xlen) :
 		for yi in range(1, ylen) :
@@ -57,21 +54,5 @@ def lcs (x, y, should_print = False) :
 				b = distance[xi + 0][yi - 1]
 
 				distance[xi][yi] = max(a, b)
-	if should_print :
-		__print(distance)
 
 	return distance[xlen - 1][ylen - 1]
-
-#
-# Private methods
-#
-
-def __print (distance) :
-	xlen = distance.shape[0]
-	ylen = distance.shape[1]
-
-	for xi in range(xlen) :
-		for yi in range(ylen) :
-			print('{:2d}'.format(distance[xi][yi]), end = ' ')
-		print()
-	print()

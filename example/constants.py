@@ -1,5 +1,5 @@
-from source.loaders     import loadxlsx
-from source.loaders     import loadtxt
+from source.io.io_loader    import loadxlsx
+from source.io.io_loader    import loadtxt
 
 from os.path    import abspath
 from os.path    import dirname
@@ -8,7 +8,7 @@ from os.path    import dirname
 # Define filepaths
 #
 
-__root      = dirname(dirname(abspath(__file__)))
+__root  = dirname(dirname(abspath(__file__)))
 
 __dataset   = __root + '\\resources\\dataset.xlsx'
 __cookbook  = __root + '\\resources\\cookbook.docx'
@@ -29,5 +29,13 @@ bookset = [
 
 dataset = [
 	loadxlsx(__dataset, 'data'),
-	loadxlsx(__dataset, 'discussion'),
+	loadxlsx(__dataset, 'discussion')
+]
+
+compset = [
+	bookset[0],
+	bookset[1],
+	bookset[2],
+	' '.join(dataset[0]['Message']),
+	' '.join(dataset[1]['Message'])
 ]
