@@ -1,6 +1,7 @@
 from source.core.core_params    import Params
-from example.constants          import bookset
+from example.constants          import dataset
 from example.constants          import compset
+from example.ex0                import run_ex0
 from example.ex1                import run_ex1
 from example.ex2                import run_ex2
 
@@ -48,8 +49,6 @@ def __versions () :
 #
 
 if __name__ == "__main__" :
-	__versions()
-
 	params = Params()
 
 	params.should_shuffle   = True
@@ -58,5 +57,10 @@ if __name__ == "__main__" :
 	params.should_save      = True
 	params.should_print     = True
 
-	run_ex1(bookset, params)
+	if params.should_print :
+		__versions()
+
+	run_ex0(dataset[0], params)
+	run_ex0(dataset[1], params)
+	run_ex1(compset, params)
 	run_ex2(compset, params)

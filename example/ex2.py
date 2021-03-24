@@ -34,7 +34,6 @@ def run_ex2 (documents, params) :
 
 		if params.should_plot :
 			pyplot.figure(titles[i])
-			#pyplot.title(titles[i])
 			pyplot.imshow(wc, interpolation = 'bilinear')
 			pyplot.axis('off')
 			pyplot.show()
