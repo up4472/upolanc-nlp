@@ -4,6 +4,8 @@ from example.constants          import compset
 from example.ex0                import run_ex0
 from example.ex1                import run_ex1
 from example.ex2                import run_ex2
+from example.ex3                import run_ex3
+from example.ex4                import run_ex4
 
 import matplotlib
 import tensorflow
@@ -61,6 +63,8 @@ if __name__ == "__main__" :
 		__versions()
 
 	run_ex0(dataset[0], params)
-	run_ex0(dataset[1], params)
-	run_ex1(compset, params)
-	run_ex2(compset, params)
+	#run_ex0(dataset[1], params)
+	#run_ex1(compset, params)
+	#run_ex2(compset, params)
+	#run_ex3(compset, params)
+	#run_ex4(dataset[0], params, 'ALL')

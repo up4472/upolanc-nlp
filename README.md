@@ -1,6 +1,7 @@
 # NLP - Text Classification
 
 ## Information
+
 This project was prepared by Uroš Polanc ([up4472@student.uni-lj.si](mailto:up4472@student.uni-lj.si))
 as part of the Natural Langage Processing (NLP) course at the Faculty of Computer Science and Information,
 University of Ljubljana.
@@ -25,7 +26,7 @@ before running the project :
 The packages can be installed in the python terminal with the following command :
 
 ```
-pip intall package-name
+pip install package-name
 ```
 
 ## Repository structure
