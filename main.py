@@ -62,9 +62,11 @@ if __name__ == "__main__" :
 	if params.should_print :
 		__versions()
 
-	run_ex0(dataset[0], params)
-	#run_ex0(dataset[1], params)
+	run_ex0(dataset, params)
+	#run_ex0([dataset[0]], params)
+	#run_ex0([dataset[1]], params)
 	#run_ex1(compset, params)
 	#run_ex2(compset, params)
 	#run_ex3(compset, params)
 	#run_ex4(dataset[0], params, 'ALL')
+	#run_ex4(dataset[1], params, 'ALL')

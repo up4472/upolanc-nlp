@@ -19,13 +19,15 @@ def __runclassifier (documents, params, model) :
 
 def run_ex4 (documents, params, model = 'VC') :
 	params              = ClassifierParams(params)
-	params.y            = 'CodePreliminary'
-	#params.y            = 'Topic'
+	#params.y            = 'CodePreliminary'
+	params.y            = 'Topic'
 	#params.y            = 'Book ID'
-	#params.y            = 'Bookclub'
 	params.extractor    = 'tfidf'
 	#params.extractor    = 'countvec'
 
+	if params.should_print :
+		print(f'Running on <{params.y}> with <{params.extractor}>')
+		print()
 	if model == 'ALL' :
 		for name in ['RF', 'NB', 'LR', 'KNN', 'VC'] :
 			__runclassifier(documents, params, name)
