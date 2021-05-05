@@ -1,0 +1,16 @@
+	Model	Extractor	F1 Score	Accuracy
+8	LR	countvec	0.77 ± 0.07	0.79 ± 0.05
+6	NB	countvec	0.76 ± 0.06	0.77 ± 0.06
+1	NB	tfidf	0.70 ± 0.06	0.75 ± 0.05
+3	LR	tfidf	0.70 ± 0.05	0.74 ± 0.04
+0	RF	tfidf	0.66 ± 0.07	0.71 ± 0.06
+4	MV	tfidf	0.66 ± 0.07	0.71 ± 0.06
+5	RF	countvec	0.64 ± 0.06	0.71 ± 0.05
+9	MV	countvec	0.64 ± 0.06	0.71 ± 0.05
+10	RF	handcrafted	0.57 ± 0.04	0.63 ± 0.04
+14	MV	handcrafted	0.57 ± 0.04	0.63 ± 0.04
+7	KNN	countvec	0.51 ± 0.06	0.62 ± 0.05
+13	LR	handcrafted	0.55 ± 0.06	0.61 ± 0.05
+2	KNN	tfidf	0.46 ± 0.04	0.59 ± 0.04
+11	NB	handcrafted	0.56 ± 0.05	0.58 ± 0.04
+12	KNN	handcrafted	0.50 ± 0.05	0.54 ± 0.05

@@ -6,11 +6,13 @@ from example.ex1                import run_ex1
 from example.ex2                import run_ex2
 from example.ex3                import run_ex3
 from example.ex4                import run_ex4
+from example.ex4                import run_ex4_all
 
 import matplotlib
 import tensorflow
 import wordcloud
 import openpyxl
+import warnings
 import sklearn
 import pandas
 import numpy
@@ -28,6 +30,15 @@ nltk.download('maxent_ne_chunker'           , quiet = True)
 nltk.download('stopwords'                   , quiet = True)
 nltk.download('words'                       , quiet = True)
 nltk.download('punkt'                       , quiet = True)
+
+#
+# Ignore warnings
+#
+
+def warn (*args, **kwargs) :
+    pass
+
+warnings.warn = warn
 
 #
 # Version information
@@ -59,14 +70,20 @@ if __name__ == "__main__" :
 	params.should_save      = True
 	params.should_print     = True
 
-	if params.should_print :
-		__versions()
+	# if params.should_print :
+	# 	__versions()
 
-	run_ex0(dataset, params)
+	#run_ex0(dataset, params)
 	#run_ex0([dataset[0]], params)
 	#run_ex0([dataset[1]], params)
 	#run_ex1(compset, params)
 	#run_ex2(compset, params)
 	#run_ex3(compset, params)
-	#run_ex4(dataset[0], params, 'ALL')
-	#run_ex4(dataset[1], params, 'ALL')
+
+	run_ex4_all(dataset, params)
+
+	# run_ex4(dataset, params,
+	#         model = ['LR'],
+	#         extractor = ['handcrafted', 'tfidf', 'countvec'],
+	#         y = ['CodePreliminary']
+	# )

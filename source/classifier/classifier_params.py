@@ -1,3 +1,4 @@
+from source.preprocess.preprocess_feature   import handcrafted
 from source.preprocess.preprocess_feature   import tfidf
 from source.preprocess.preprocess_feature   import countvec
 from source.preprocess.preprocess_tokenize  import tokenize
@@ -22,11 +23,15 @@ class ClassifierParams :
 		self.extractor  = 'tfidf'
 
 	def features (self, data) :
-		data, _ = tokenize(data, self)
+		if self.extractor != 'handcrafted' :
+			data, _ = tokenize(data, self)
 
 		if self.extractor == 'tfidf' :
 			return tfidf(data)
 		elif self.extractor == 'countvec' :
 			return countvec(data)
+		elif self.extractor == 'handcrafted' :
+			return handcrafted(data)
 		else :
+			print(f'Option <{self.extractor}> does not match any. TF-IDF will be used.')
 			return tfidf(data)
