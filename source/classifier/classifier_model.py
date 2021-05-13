@@ -3,6 +3,7 @@ from source.classifier.classifier_util      import createNB
 from source.classifier.classifier_util      import createLR
 from source.classifier.classifier_util      import createKNN
 from source.classifier.classifier_util      import createVC
+from source.model.model_bert                import Bert
 
 from sklearn.model_selection    import KFold
 from sklearn.metrics            import accuracy_score
@@ -17,7 +18,7 @@ import numpy
 
 class ClassifierModel :
 
-	def __init__ (self, name, data) :
+	def __init__ (self, name, data, params) :
 		self.name = name
 		self.data = data
 
@@ -31,6 +32,13 @@ class ClassifierModel :
 			self.model = createKNN()
 		elif self.name == 'VC' :
 			self.model = createVC()
+		elif self.name == 'BERT' :
+			n = self.data[[params.y]]
+			n = data.loc[:, params.y].astype('category')
+			n = len(set(n))
+			print(n)
+
+			self.model = Bert(params, n)
 		else :
 			self.model = createRF()
 

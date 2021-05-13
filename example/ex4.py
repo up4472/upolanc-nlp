@@ -10,14 +10,14 @@ import re
 
 def run_ex4_all (dataset, params) :
 	run_ex4(dataset, params,
-	        model = ['RF', 'NB', 'KNN', 'LR', 'MV'],
-	        extractor = ['tfidf', 'countvec', 'handcrafted'],
+	        model = ['RF', 'NB', 'KNN', 'LR', 'MV', 'BERT'],
+	        extractor = ['tfidf', 'countvec', 'handcrafted', 'none'],
 	        y = ['CodePreliminary', 'Topic', 'Book ID']
 	)
 
 def run_ex4 (documents, params, model = None, extractor = None, y = None) :
 	if extractor is None : extractor = ['tfidf']
-	if model is None : model = ['RF', 'NB', 'LR', 'KNN', 'VC']
+	if model is None : model = ['RF', 'NB', 'LR', 'KNN', 'VC', 'BERT']
 	if y is None : y = ['CodePreliminary']
 
 	params = ClassifierParams(params)
@@ -37,7 +37,7 @@ def run_ex4 (documents, params, model = None, extractor = None, y = None) :
 				params.extractor = ei
 
 				for name in model :
-					classifier = ClassifierModel(name, document)
+					classifier = ClassifierModel(name, document, params)
 					results = classifier.cross_valid(params).values.tolist()
 
 					result.append([name, params.extractor, results[1][0], results[1][1]])

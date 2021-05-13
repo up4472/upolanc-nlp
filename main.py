@@ -80,10 +80,23 @@ if __name__ == "__main__" :
 	#run_ex2(compset, params)
 	#run_ex3(compset, params)
 
-	run_ex4_all(dataset, params)
+	run_classifiers = False
+	run_bert        = True
 
-	# run_ex4(dataset, params,
-	#         model = ['LR'],
-	#         extractor = ['handcrafted', 'tfidf', 'countvec'],
-	#         y = ['CodePreliminary']
-	# )
+	# Running classifiers
+
+	if run_classifiers :
+		run_ex4(dataset, params,
+		        model = ['LR', 'RF', 'KMM', 'MV', 'NB'],
+		        extractor = ['handcrafted', 'tfidf', 'countvec'],
+		        y = ['CodePreliminary', 'Book ID', 'Topic']
+		)
+
+	# Running Bert
+
+	if run_bert :
+		run_ex4(dataset, params,
+		        model = ['BERT'],
+		        extractor = ['none'],
+		        y = ['CodePreliminary']
+		)

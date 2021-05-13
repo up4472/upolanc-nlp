@@ -23,7 +23,7 @@ class ClassifierParams :
 		self.extractor  = 'tfidf'
 
 	def features (self, data) :
-		if self.extractor != 'handcrafted' :
+		if self.extractor == 'tfidf' or self.extractor == 'countvec':
 			data, _ = tokenize(data, self)
 
 		if self.extractor == 'tfidf' :
@@ -32,6 +32,8 @@ class ClassifierParams :
 			return countvec(data)
 		elif self.extractor == 'handcrafted' :
 			return handcrafted(data)
+		elif self.extractor == 'none' :
+			return data
 		else :
 			print(f'Option <{self.extractor}> does not match any. TF-IDF will be used.')
 			return tfidf(data)
