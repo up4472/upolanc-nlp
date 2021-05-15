@@ -25,7 +25,7 @@ import xlrd
 # Ignore warnings
 #
 
-def warn () :
+def warn (*args, **kvargs) :
 	pass
 
 warnings.warn = warn
@@ -80,7 +80,7 @@ if __name__ == "__main__" :
 	                    help = 'the extractor to be used'
 	)
 	parser.add_argument('-t', '--target', default = None, type = str, nargs = '+',
-	                    choices = ['CodePrelimary', 'Topic', 'Book ID'],
+	                    choices = ['CodePreliminary', 'Topic', 'Book ID'],
 	                    help = 'the target to be used '
 	)
 	parser.add_argument('-d', '--demo', default = 4, type = int,
