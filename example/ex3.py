@@ -9,20 +9,6 @@ from matplotlib         import pyplot
 import numpy
 
 #
-# Private methods
-#
-
-def __autolabe (ax, rects) :
-	for rect in rects :
-		h = rect.get_height()
-
-		ax.annotate('{}'.format(h),
-			xy  = (rect.get_x() + rect.get_width() / 2, h),
-			ha  = 'center',
-			va  = 'bottom'
-		)
-
-#
 # Public methods
 #
 

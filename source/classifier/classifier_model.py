@@ -33,10 +33,8 @@ class ClassifierModel :
 		elif self.name == 'VC' :
 			self.model = createVC()
 		elif self.name == 'BERT' :
-			n = self.data[[params.y]]
 			n = data.loc[:, params.y].astype('category')
 			n = len(set(n))
-			print(n)
 
 			self.model = Bert(params, n)
 		else :

@@ -127,20 +127,34 @@ class Bert (Model) :
 
 		return numpy.argmax(self.model.predict(s).logits, axis = 1)
 
-	def evaluate (self, x, y, metric = 'accuracy', epochs = 3, validation_percent = 0.2, allow_import = True) :
+	def evaluate (self, x, y, epochs = 3, validation_percent = 0.2, allow_import = True) :
 		x0, x1, y0, y1 = train_test_split(x, y, test_size = validation_percent, random_state = 0)
 
 		self.fit(x0, y0, epochs = epochs, validation_percent = validation_percent, allow_import = allow_import)
 
-		pred = self.predict(x1)
-		resu = self.encoder.transform(y1.to_numpy()).astype(float)
+		p0 = self.predict(x0)
+		p1 = self.predict(x1)
+
+		y0 = self.encoder.transform(y0.to_numpy()).astype(float)
+		y1 = self.encoder.transform(y1.to_numpy()).astype(float)
 
 		tensorflow.keras.backend.clear_session()
 		tensorflow.compat.v1.reset_default_graph()
 
-		if metric == 'accuracy' :
-			return accuracy_score(resu, pred)
-		elif metric == 'f-score' :
-			return f1_score(resu, pred)
-		else :
-			return f1_score(resu, pred)
+		result = {
+			'F1 Score'  : [
+				'{0:.2f}'.format(f1_score(y0, p0, average = 'weighted', zero_division = 0)),
+				'{0:.2f}'.format(f1_score(y1, p1, average = 'weighted', zero_division = 0))
+			],
+			'Accuracy'  : [
+				'{0:.2f}'.format(accuracy_score(y0, p0, normalize = True)),
+				'{0:.2f}'.format(accuracy_score(y1, p1, normalize = True))
+			]
+		}
+
+		result = pandas.DataFrame(result)
+
+		result.columns   = ['F1 Score', 'Accuracy']
+		result.index     = ['Train', 'Test']
+
+		return result

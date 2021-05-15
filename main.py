@@ -6,18 +6,29 @@ from example.ex1                import run_ex1
 from example.ex2                import run_ex2
 from example.ex3                import run_ex3
 from example.ex4                import run_ex4
-from example.ex4                import run_ex4_all
 
+import transformers
 import matplotlib
 import tensorflow
 import wordcloud
 import openpyxl
 import warnings
+import argparse
 import sklearn
 import pandas
+import scipy
 import numpy
 import nltk
 import xlrd
+
+#
+# Ignore warnings
+#
+
+def warn () :
+	pass
+
+warnings.warn = warn
 
 #
 # Configuration
@@ -32,29 +43,23 @@ nltk.download('words'                       , quiet = True)
 nltk.download('punkt'                       , quiet = True)
 
 #
-# Ignore warnings
-#
-
-def warn (*args, **kwargs) :
-    pass
-
-warnings.warn = warn
-
-#
 # Version information
 #
 
 def __versions () :
 	print('The following versions are being used :')
-	print(f'- sklearn     : {sklearn.__version__}')
-	print(f'- numpy       : {numpy.__version__}')
-	print(f'- tensorflow  : {tensorflow.__version__}')
-	print(f'- pandas      : {pandas.__version__}')
-	print(f'- nltk        : {nltk.__version__}')
-	print(f'- matplotlib  : {matplotlib.__version__}')
-	print(f'- xlrd        : {xlrd.__version__}')
-	print(f'- openpyxl    : {openpyxl.__version__}')
-	print(f'- wordcloud   : {wordcloud.__version__}')
+	print(f'- sklearn      : {sklearn.__version__}')
+	print(f'- numpy        : {numpy.__version__}')
+	print(f'- tensorflow   : {tensorflow.__version__}')
+	print(f'- pandas       : {pandas.__version__}')
+	print(f'- nltk         : {nltk.__version__}')
+	print(f'- matplotlib   : {matplotlib.__version__}')
+	print(f'- xlrd         : {xlrd.__version__}')
+	print(f'- openpyxl     : {openpyxl.__version__}')
+	print(f'- wordcloud    : {wordcloud.__version__}')
+	print(f'- scipy        : {scipy.__version__}')
+	print(f'- transformers : {transformers.__version__}')
+	print(f'- argparse     : {argparse.__version__}')
 	print()
 
 #
@@ -62,41 +67,59 @@ def __versions () :
 #
 
 if __name__ == "__main__" :
+	print()
+
+	parser = argparse.ArgumentParser(description = 'Argument parser')
+
+	parser.add_argument('-m', '--model', default = None, type = str, nargs = '+',
+	                    choices = ['LR', 'RF', 'NB', 'KNN', 'MV', 'BERT'],
+	                    help = 'the model to be used'
+	)
+	parser.add_argument('-e', '--extractor', default = None, type = str, nargs = '+',
+	                    choices = ['tfidf', 'countvec', 'handcrafted', 'none'],
+	                    help = 'the extractor to be used'
+	)
+	parser.add_argument('-t', '--target', default = None, type = str, nargs = '+',
+	                    choices = ['CodePrelimary', 'Topic', 'Book ID'],
+	                    help = 'the target to be used '
+	)
+	parser.add_argument('-d', '--demo', default = 4, type = int,
+	                    choices = [0, 1, 2, 3, 4],
+	                    help = 'the demo number'
+	)
+	parser.add_argument('-v', '--verbose', default = 1, type = int,
+						choices = [0, 1],
+						help = 'the verbose flag'
+	)
+	parser.add_argument('-s', '--save', default = 0, type = int,
+	                    choices = [0, 1],
+						help = 'the save flag'
+	)
+
+	args = parser.parse_args()
+
 	params = Params()
 
 	params.should_shuffle   = True
 	params.should_stem      = True
 	params.should_plot      = True
-	params.should_save      = True
-	params.should_print     = True
+	params.should_save      = args.save == 1
+	params.should_print     = args.verbose == 1
 
-	# if params.should_print :
-	# 	__versions()
+	if params.should_print :
+		__versions()
 
-	#run_ex0(dataset, params)
-	#run_ex0([dataset[0]], params)
-	#run_ex0([dataset[1]], params)
-	#run_ex1(compset, params)
-	#run_ex2(compset, params)
-	#run_ex3(compset, params)
-
-	run_classifiers = False
-	run_bert        = True
-
-	# Running classifiers
-
-	if run_classifiers :
+	if args.demo == 0 :
+		run_ex0(dataset, params)
+	elif args.demo == 1 :
+		run_ex1(compset, params)
+	elif args.demo == 2:
+		run_ex2(compset, params)
+	elif args.demo == 3:
+		run_ex3(compset, params)
+	elif args.demo == 4:
 		run_ex4(dataset, params,
-		        model = ['LR', 'RF', 'KMM', 'MV', 'NB'],
-		        extractor = ['handcrafted', 'tfidf', 'countvec'],
-		        y = ['CodePreliminary', 'Book ID', 'Topic']
-		)
-
-	# Running Bert
-
-	if run_bert :
-		run_ex4(dataset, params,
-		        model = ['BERT'],
-		        extractor = ['none'],
-		        y = ['CodePreliminary']
+			model = args.model,
+			extractor = args.extractor,
+			target = args.target
 		)

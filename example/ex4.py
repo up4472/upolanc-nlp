@@ -8,28 +8,21 @@ import re
 # Public methods
 #
 
-def run_ex4_all (dataset, params) :
-	run_ex4(dataset, params,
-	        model = ['RF', 'NB', 'KNN', 'LR', 'MV', 'BERT'],
-	        extractor = ['tfidf', 'countvec', 'handcrafted', 'none'],
-	        y = ['CodePreliminary', 'Topic', 'Book ID']
-	)
-
-def run_ex4 (documents, params, model = None, extractor = None, y = None) :
-	if extractor is None : extractor = ['tfidf']
-	if model is None : model = ['RF', 'NB', 'LR', 'KNN', 'VC', 'BERT']
-	if y is None : y = ['CodePreliminary']
+def run_ex4 (documents, params, model = None, extractor = None, target = None) :
+	if extractor is None : extractor = ['tfidf', 'countvec', 'handcrafted', 'none']
+	if model is None : model = ['RF', 'NB', 'KNN', 'LR', 'MV', 'BERT']
+	if target is None : target = ['CodePreliminary', 'Topic', 'Book ID']
 
 	params = ClassifierParams(params)
 
-	if type(y) != list or type(extractor) != list or type(model) != list :
-		print('The values <model>, <extractor> and <y> must all be of class <list>.')
+	if type(target) != list or type(extractor) != list or type(model) != list :
+		print('The values <model>, <extractor> and <target> must all be of class <list>.')
 		raise ValueError
 
 	for index in range(len(documents)) :
 		document = documents[index]
 
-		for yi in y :
+		for yi in target :
 			result = []
 
 			for ei in extractor :
@@ -37,6 +30,11 @@ def run_ex4 (documents, params, model = None, extractor = None, y = None) :
 				params.extractor = ei
 
 				for name in model :
+					if name == 'BERT' and ei != 'none' :
+						continue
+					if name != 'BERT' and ei == 'none' :
+						continue
+
 					classifier = ClassifierModel(name, document, params)
 					results = classifier.cross_valid(params).values.tolist()
 
