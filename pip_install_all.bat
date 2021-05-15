@@ -9,3 +9,4 @@ pip install scipy
 pip install sklearn
 pip install transformers
 pip install argparse
+pip install wordcloud
