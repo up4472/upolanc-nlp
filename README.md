@@ -6,6 +6,14 @@ This project was prepared by Uroš Polanc ([up4472@student.uni-lj.si](mailto:up4
 as part of the Natural Langage Processing (NLP) course at the Faculty of Computer Science and Information,
 University of Ljubljana.
 
+## Repository structure
+
+- ``` .\example\ ``` contains python code for some examples
+- ``` .\reports\ ``` contains pdf reports
+- ``` .\resources\ ``` contains all the necessary resources (.txt, .xlsx, .docx)
+- ``` .\resources\models ``` contains all the necessary pretrained models (.bin, .json, .txt)
+- ``` .\source\ ``` contains python source code
+
 ## Instructions
 
 To run the project just import it into PyCharm, and make sure the following packages are installed
@@ -42,13 +50,37 @@ Note that the BERT uses tensorflow learning, which means it needs CUDA cores, or
 have an AMD GPU be prepered to wait a very long time before the process is done. But there are some solutions for that,
 such as ROCm (https://rocmdocs.amd.com/en/latest/), look at that if you need.
 
-## Repository structure
+After the packages have been installed, we need to download the pretrained BERT models. The base english conversation
+model can be found at http://docs.deeppavlov.ai/en/master/features/pretrained_vectors.html and all of the files should
+be saved into the ``` .\resources\models\pretrained\english\ ``` folder.
 
-- ``` .\example\ ``` contains python code for some examples
-- ``` .\reports\ ``` contains pdf reports
-- ``` .\resources\ ``` contains all the necessary resources (.txt, .xlsx, .docx)
-- ``` .\resources\models ``` contains all the necessary pretrained models (.bin, .json, .txt)
-- ``` .\source\ ``` contains python source code
+Unless you want to train the database yourself you will also need our pretrained models, which can be found at
+[INSERT LINK HERE] and should extracted to ``` .\resources\models\pretrained\custom\ ``` folder.
+
+The final structure should look a bit like this :
+```
+.\resources
+    +-- models
+        +-- english
+            +-- config.json
+            +-- pytorch_model.bin
+            +-- vocab.txt
+        +-- custom
+            +-- bookid
+                +-- config.json
+                +-- pytorch_model.bin
+                +-- vocab.txt
+            +-- codepreliminary
+                +-- config.json
+                +-- pytorch_model.bin
+                +-- vocab.txt
+            +-- topic
+                +-- config.json
+                +-- pytorch_model.bin
+                +-- vocab.txt
+```
+
+After all packages have been instaled and all models have been downloaded, we can run the project.
 
 ## Running
 

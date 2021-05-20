@@ -10,6 +10,7 @@ from sklearn.metrics                import accuracy_score
 from sklearn.metrics                import f1_score
 
 import tensorflow
+import pandas
 import numpy
 import tqdm
 import os
