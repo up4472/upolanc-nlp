@@ -40,24 +40,22 @@ The packages can be installed in the python terminal with the following command 
 pip install package-name
 ```
 
-or you can run the following command that will install them all if your system can run .bat files :
-
-```
-pip_install_all
-```
+Note that wordcloud package might fail if you do not have Microsoft Visual C++ Build Tools, this can be solved by downloading
+and installing it from https://visualstudio.microsoft.com/visual-cpp-build-tools/.
 
 Note that the BERT uses tensorflow learning, which means it needs CUDA cores, or more specifically an NVidea GPU. If you
 have an AMD GPU be prepered to wait a very long time before the process is done. But there are some solutions for that,
 such as ROCm (https://rocmdocs.amd.com/en/latest/), look at that if you need.
 
 After the packages have been installed, we need to download the pretrained BERT models. The base english conversation
-model can be found at http://docs.deeppavlov.ai/en/master/features/pretrained_vectors.html and all of the files should
-be saved into the ``` .\resources\models\pretrained\english\ ``` folder.
+model can be found at http://docs.deeppavlov.ai/en/master/features/pretrained_vectors.html. Download the Conversational
+BERT pythorch version, then extract and save all the files into the ``` .\resources\models\pretrained\english\ ```
+folder.
 
 Unless you want to train the database yourself you will also need our pretrained models, which can be found at
-[INSERT LINK HERE] and should extracted to ``` .\resources\models\pretrained\custom\ ``` folder.
+https://mega.nz/file/dsgm1SIa#KUFvVSIMooJFr9aR7y7xSjc1Uv06lolol5y9FQiD2AE and should be extracted to the ``` .\resources\models\pretrained\custom\ ``` folder.
 
-The final structure should look a bit like this :
+The final structure should look exactly like this (where ## is some number) :
 ```
 .\resources
     +-- models
@@ -66,15 +64,15 @@ The final structure should look a bit like this :
             +-- pytorch_model.bin
             +-- vocab.txt
         +-- custom
-            +-- bookid
+            +-- bookid##
                 +-- config.json
                 +-- pytorch_model.bin
                 +-- vocab.txt
-            +-- codepreliminary
+            +-- codepreliminary##
                 +-- config.json
                 +-- pytorch_model.bin
                 +-- vocab.txt
-            +-- topic
+            +-- topic##
                 +-- config.json
                 +-- pytorch_model.bin
                 +-- vocab.txt
@@ -84,7 +82,7 @@ After all packages have been instaled and all models have been downloaded, we ca
 
 ## Running
 
-You can run full analysis of all possible results with the following command :
+You can run full analysis of all possible results with the following command (with pretrained it takes around xx min) :
 
 ```
 python main.py

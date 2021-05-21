@@ -64,6 +64,10 @@ class ClassifierModel :
 
 			self.model.fit(x0, y0)
 
+			if self.name == 'BERT' :
+				y0 = self.model.encode(y0)
+				y1 = self.model.encode(y1)
+
 			p0 = self.model.predict(x0)
 			p1 = self.model.predict(x1)
 
