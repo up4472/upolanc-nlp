@@ -55,27 +55,32 @@ folder.
 Unless you want to train the database yourself you will also need our pretrained models, which can be found at
 https://mega.nz/file/dsgm1SIa#KUFvVSIMooJFr9aR7y7xSjc1Uv06lolol5y9FQiD2AE and should be extracted to the ``` .\resources\models\pretrained\custom\ ``` folder.
 
-The final structure should look exactly like this (where ## is some number) :
+The final structure should look exactly like this :
 ```
 .\resources
     +-- models
-        +-- english
-            +-- config.json
-            +-- pytorch_model.bin
-            +-- vocab.txt
-        +-- custom
-            +-- bookid##
+        +-- pretrained
+            +-- english
                 +-- config.json
                 +-- pytorch_model.bin
                 +-- vocab.txt
-            +-- codepreliminary##
-                +-- config.json
-                +-- pytorch_model.bin
-                +-- vocab.txt
-            +-- topic##
-                +-- config.json
-                +-- pytorch_model.bin
-                +-- vocab.txt
+            +-- custom
+                +-- bookid3
+                    +-- config.json
+                    +-- pytorch_model.bin
+                    +-- vocab.txt
+                +-- codepreliminary9
+                    +-- config.json
+                    +-- pytorch_model.bin
+                    +-- vocab.txt
+                +-- codepreliminary16
+                    +-- config.json
+                    +-- pytorch_model.bin
+                    +-- vocab.txt
+                +-- topic3
+                    +-- config.json
+                    +-- pytorch_model.bin
+                    +-- vocab.txt
 ```
 
 After all packages have been instaled and all models have been downloaded, we can run the project.
