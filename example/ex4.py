@@ -35,6 +35,9 @@ def run_ex4 (documents, params, model = None, extractor = None, target = None) :
 					if name != 'BERT' and ei == 'none' :
 						continue
 
+					if params.should_print :
+						print(f'Running model <{name}> with <{ei}> on <{yi}> ....')
+
 					classifier = ClassifierModel(name, document, params)
 					results = classifier.cross_valid(params).values.tolist()
 

@@ -82,7 +82,8 @@ After all packages have been instaled and all models have been downloaded, we ca
 
 ## Running
 
-You can run full analysis of all possible results with the following command (with pretrained it takes around xx min) :
+You can run full analysis of all possible results with the following command (with pretrained it takes around 45 min
+on CPU) :
 
 ```
 python main.py
