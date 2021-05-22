@@ -73,21 +73,22 @@ if __name__ == "__main__" :
 
 	parser.add_argument('-m', '--model', default = None, type = str, nargs = '+',
 	                    choices = ['LR', 'RF', 'NB', 'KNN', 'MV', 'BERT'],
-	                    help = 'the model to be used'
+	                    help = 'the model to be used (only used for --demo 4)'
 	)
 	parser.add_argument('-e', '--extractor', default = None, type = str, nargs = '+',
 	                    choices = ['tfidf', 'countvec', 'handcrafted', 'none'],
-	                    help = 'the extractor to be used'
+	                    help = 'the extractor to be used (only used for --demo 4)'
 	)
 	parser.add_argument('-t', '--target', default = None, type = str, nargs = '+',
 	                    choices = ['CodePreliminary', 'Topic', 'Book ID'],
-	                    help = 'the target to be used '
+	                    help = 'the classification target to be used (only used for --demo 4)'
 	)
 	parser.add_argument('-d', '--demo', default = 4, type = int,
 	                    choices = [0, 1, 2, 3, 4],
-	                    help = 'the demo number'
+	                    help = 'the demo number, where (0) is target distribution, (1) is uni-grams and bi-grams, ' +
+	                           '(2) is wordclouds, (3) is top words distribution, and (4) is text classification.'
 	)
-	parser.add_argument('-v', '--verbose', default = 1, type = int,
+	parser.add_argument('-v', '--verbose', default = 0, type = int,
 						choices = [0, 1],
 						help = 'the verbose flag'
 	)

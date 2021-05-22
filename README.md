@@ -40,20 +40,21 @@ The packages can be installed in the python terminal with the following command 
 pip install package-name
 ```
 
-Note that wordcloud package might fail if you do not have Microsoft Visual C++ Build Tools, this can be solved by downloading
-and installing it from https://visualstudio.microsoft.com/visual-cpp-build-tools/.
+Note that the WordCloud package might fail if you do not have Microsoft Visual C++ Build Tools, this can be solved by
+downloading and installing it from https://visualstudio.microsoft.com/visual-cpp-build-tools/.
 
-Note that the BERT uses tensorflow learning, which means it needs CUDA cores, or more specifically an NVidea GPU. If you
-have an AMD GPU be prepered to wait a very long time before the process is done. But there are some solutions for that,
+Note that the BERT uses TensorFlow  learning, which means it needs CUDA cores, or more specifically an NVidea GPU. If you
+have an AMD GPU be prepared to wait a very long time before the process is done. But there are some solutions for that,
 such as ROCm (https://rocmdocs.amd.com/en/latest/), look at that if you need.
 
-After the packages have been installed, we need to download the pretrained BERT models. The base english conversation
+After the packages have been installed, we need to download the pre-trained BERT models. The base english conversation
 model can be found at http://docs.deeppavlov.ai/en/master/features/pretrained_vectors.html. Download the Conversational
 BERT pythorch version, then extract and save all the files into the ``` .\resources\models\pretrained\english\ ```
 folder.
 
-Unless you want to train the database yourself you will also need our pretrained models, which can be found at
-https://mega.nz/file/dsgm1SIa#KUFvVSIMooJFr9aR7y7xSjc1Uv06lolol5y9FQiD2AE and should be extracted to the ``` .\resources\models\pretrained\custom\ ``` folder.
+Unless you want to train the database yourself you will also need our pre-trained models, which can be found at
+https://mega.nz/file/dsgm1SIa#KUFvVSIMooJFr9aR7y7xSjc1Uv06lolol5y9FQiD2AE and should be extracted to the
+``` .\resources\models\pretrained\custom\ ``` folder.
 
 The final structure should look exactly like this :
 ```
@@ -87,7 +88,7 @@ After all packages have been instaled and all models have been downloaded, we ca
 
 ## Running
 
-You can run full analysis of all possible results with the following command (with pretrained it takes around 45 min
+You can run full analysis of all possible results with the following command (with pre-trained it takes around 45 min
 on CPU) :
 
 ```
